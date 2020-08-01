@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/tehSIRius/zizka-backend/issues"
   },
-  "homepage": "https://github.com/tehSIRius/zizka-backend#readme"
+  "homepage": "https://github.com/tehSIRius/zizka-backend#readme",
+  "devDependencies": {
+    "jest": "^26.2.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
