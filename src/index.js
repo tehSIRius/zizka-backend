@@ -1,7 +1,8 @@
 'use strict';
 
-// Variables used for setup
+// Variables
 const port = 3000;
+const environment = process.env.NODE_ENV;
 
 // Express and middleware
 const express = require('express');
@@ -25,8 +26,17 @@ app.use(
 app.use(bodyParser.json());
 
 // Sets index route
-app.get('/', (req, res) => res.send('Hello World!'));
-
-app.listen(port, () =>
-	console.log(`Example app listening at http://localhost:${port}`)
+app.get('/', (req, res) =>
+	res.json({
+		value: 'Hello There!',
+	})
 );
+
+// Server is only started if it is not in a test environment
+if (environment === 'test') {
+	module.exports = app;
+} else {
+	app.listen(port, () =>
+		console.log(`Example app listening at http://localhost:${port}`)
+	);
+}
