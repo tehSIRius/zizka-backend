@@ -1,6 +1,6 @@
 const logger = require('pino')({
 	name: 'Žižka Backend',
-	level: process.env.PINO_LEVEL || 'info',
+	level: process.env.LEVEL || 'info',
 	prettyPrint: {
 		colorize: true,
 		translateTime: true,

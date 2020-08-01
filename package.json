@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=prod nodemon ./src/index.js",
-    "dev": "cross-env PINO_LEVEL=debug NODE_ENV=dev nodemon ./src/index.js",
+    "dev": "cross-env LEVEL=debug NODE_ENV=dev nodemon ./src/index.js",
     "test": "jest"
   },
   "repository": {
