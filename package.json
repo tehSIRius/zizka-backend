@@ -1,0 +1,22 @@
+{
+  "name": "zizka-backend",
+  "version": "1.0.0",
+  "description": "Backend for a fun trivia game with friends or foes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tehSIRius/zizka-backend.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Patrik Dvořáček",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tehSIRius/zizka-backend/issues"
+  },
+  "homepage": "https://github.com/tehSIRius/zizka-backend#readme"
+}
