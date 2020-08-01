@@ -1,6 +1,7 @@
 'use strict';
 
 const knex = require('knex');
+const logger = require('./logger').child({ name: 'Database' });
 
 let database;
 
@@ -12,6 +13,8 @@ if (process.env.NODE_ENV !== 'prod') {
 		},
 		useNullAsDefault: true,
 	});
+
+	logger.info('Starting a local database.');
 } else {
 	database = knex({
 		client: 'pg',
@@ -24,29 +27,41 @@ if (process.env.NODE_ENV !== 'prod') {
 		},
 		useNullAsDefault: true,
 	});
+
+	logger.info('Starting Heroku Postgres database.');
 }
 
 database.schema.hasTable('users').then((exists) => {
 	if (!exists) {
+		logger.info('Creating table `users`.');
+
 		return database.schema.createTable('users', (t) => {
 			t.string('username', 64).primary();
 			t.string('email', 256).unique().notNull();
 			t.string('password', 64).notNull();
 		});
+	} else {
+		logger.debug('Table `users` already exists. Skipping creation.');
 	}
 });
 
 database.schema.hasTable('languages').then((exists) => {
 	if (!exists) {
+		logger.info('Creating table `languages`.');
+
 		return database.schema.createTable('languages', (t) => {
 			t.increments('id').primary();
 			t.string('name').unique().notNull();
 		});
+	} else {
+		logger.debug('Table `languages` already exists. Skipping creation.');
 	}
 });
 
 database.schema.hasTable('questions').then((exists) => {
 	if (!exists) {
+		logger.info('Creating table `questions`.');
+
 		return database.schema.createTable('questions', (t) => {
 			t.increments('id').primary();
 			t.string('question', 256).unique().notNull();
@@ -57,11 +72,15 @@ database.schema.hasTable('questions').then((exists) => {
 			t.integer('lang').references('id').inTable('languages').notNull();
 			t.string('author').references('username').inTable('users').notNull();
 		});
+	} else {
+		logger.debug('Table `questions` already exists. Skipping creation.');
 	}
 });
 
 database.schema.hasTable('approximations').then((exists) => {
 	if (!exists) {
+		logger.info('Creating table `approximations`.');
+
 		return database.schema.createTable('approximations', (t) => {
 			t.increments('id').primary();
 			t.string('question', 256).unique().notNull();
@@ -69,7 +88,11 @@ database.schema.hasTable('approximations').then((exists) => {
 			t.integer('lang').references('id').inTable('languages').notNull();
 			t.string('author').references('username').inTable('users').notNull();
 		});
+	} else {
+		logger.debug('Table `approximations` already exists. Skipping creation.');
 	}
 });
+
+logger.info('Database has been initialized.');
 
 module.exports = database;
