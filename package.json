@@ -4,6 +4,7 @@
   "description": "Backend for a fun trivia game with friends or foes",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./src/index.js",
     "test": "jest"
   },
   "repository": {
@@ -20,9 +21,20 @@
   },
   "homepage": "https://github.com/tehSIRius/zizka-backend#readme",
   "devDependencies": {
-    "jest": "^26.2.2"
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.2.2",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "pino": "^6.4.1"
   }
 }
