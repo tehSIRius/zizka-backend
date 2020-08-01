@@ -37,7 +37,6 @@ database.schema.hasTable('users').then((exists) => {
 
 		return database.schema.createTable('users', (t) => {
 			t.string('username', 64).primary();
-			t.string('email', 256).unique().notNull();
 			t.string('password', 64).notNull();
 		});
 	} else {
