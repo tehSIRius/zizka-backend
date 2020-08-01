@@ -1,7 +1,7 @@
 'use strict';
 
 // Variables
-const port = 3000;
+const port = process.env.PORT || 3000;
 const environment = process.env.NODE_ENV;
 
 // Express and middleware
