@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
 
 // Creates the Express app
 const app = express();
+const logger = require('./logger').child({ name: 'Index' });
+const database = require('./database');
 
 // Assigns middleware
 app.use(cors());
@@ -37,6 +39,6 @@ if (environment === 'test') {
 	module.exports = app;
 } else {
 	app.listen(port, () =>
-		console.log(`Example app listening at http://localhost:${port}`)
+		logger.info(`Example app listening at http://localhost:${port}`)
 	);
 }
