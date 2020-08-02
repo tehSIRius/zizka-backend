@@ -1,3 +1,5 @@
+'use strict';
+
 const logger = require('pino')({
 	name: 'Žižka Backend',
 	level: process.env.LEVEL || 'info',
