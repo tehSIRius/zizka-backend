@@ -14,7 +14,6 @@ const bodyParser = require('body-parser');
 // Creates the Express app
 const app = express();
 const logger = require('./logger').child({ name: 'Index' });
-const database = require('./database');
 
 // Assigns middleware
 app.use(cors());

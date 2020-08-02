@@ -5,7 +5,7 @@ const logger = require('./logger').child({ name: 'Database' });
 
 let database;
 
-if (process.env.NODE_ENV !== 'prod') {
+if (process.env.NODE_ENV === 'dev') {
 	database = knex({
 		client: 'sqlite3',
 		connection: {
@@ -14,8 +14,8 @@ if (process.env.NODE_ENV !== 'prod') {
 		useNullAsDefault: true,
 	});
 
-	logger.info('Starting a local database.');
-} else {
+	logger.info('Starting a local SQLite database.');
+} else if (process.env.NODE_ENV === 'prod') {
 	database = knex({
 		client: 'pg',
 		connection: {
@@ -29,6 +29,14 @@ if (process.env.NODE_ENV !== 'prod') {
 	});
 
 	logger.info('Starting Heroku Postgres database.');
+} else if (process.env.NODE_ENV === 'test') {
+	database = knex({
+		client: 'sqlite',
+		connection: ':memory:',
+		useNullAsDefault: true,
+	});
+
+	logger.info('Starting an in-memory SQLite database.');
 }
 
 database.schema.hasTable('users').then((exists) => {
@@ -37,7 +45,6 @@ database.schema.hasTable('users').then((exists) => {
 
 		return database.schema.createTable('users', (t) => {
 			t.string('username', 64).primary();
-			t.string('email', 256).unique().notNull();
 			t.string('password', 64).notNull();
 		});
 	} else {

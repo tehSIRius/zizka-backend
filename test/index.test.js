@@ -1,7 +1,9 @@
 'use strict';
 
+// Used to test GET functions
 const request = require('supertest');
 
+// Tested file
 const app = require('../src/index');
 
 describe('Index', () => {
