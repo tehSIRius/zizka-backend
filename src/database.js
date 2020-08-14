@@ -195,6 +195,7 @@ tableCalls.push(
 	})
 );
 
+// Cannot be run in paralel since tables are dependent on each other
 tableCalls.forEach(async (call) => {
 	try {
 		await call;

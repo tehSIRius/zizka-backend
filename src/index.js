@@ -13,7 +13,13 @@ const bodyParser = require('body-parser');
 
 // Creates the Express app
 const app = express();
+
+// Sets up logging
 const logger = require('./logger').child({ name: 'Index' });
+const expressPino = require('express-pino-logger')({
+	logger: logger,
+	useLevel: 'debug',
+});
 
 // Assigns middleware
 app.use(cors());
@@ -25,15 +31,17 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
+app.use(expressPino);
 
 // Sets index route
-app.get('/', (req, res) =>
+app.get('/', (req, res) => {
 	res.json({
 		value: 'Hello There!',
-	})
-);
+	});
+});
 
 // Server is only started if it is not in a test environment
+// Otherwise it is exported to be tested
 if (environment === 'test') {
 	module.exports = app;
 } else {
