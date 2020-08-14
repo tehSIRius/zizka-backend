@@ -46,6 +46,6 @@ if (environment === 'test') {
 	module.exports = app;
 } else {
 	app.listen(port, () =>
-		logger.info(`Example app listening at http://localhost:${port}`)
+		logger.info(`Žižka Backend is running on http://localhost:${port}`)
 	);
 }
