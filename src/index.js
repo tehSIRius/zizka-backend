@@ -14,7 +14,10 @@ const bodyParser = require('body-parser');
 // Creates the Express app
 const app = express();
 const logger = require('./logger').child({ name: 'Index' });
-const expressPino = require('express-pino-logger')({ logger: logger });
+const expressPino = require('express-pino-logger')({
+	logger: logger,
+	useLevel: 'debug',
+});
 
 // Assigns middleware
 app.use(cors());
