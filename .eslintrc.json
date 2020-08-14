@@ -28,7 +28,7 @@
                 "semi": true,
                 "quoteProps": "consistent",
                 "arrowParens": "always",
-                "endOfLine": "auto"
+                "endOfLine": "lf"
             }
         ],
         "indent": [
@@ -37,7 +37,7 @@
         ],
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
         ],
         "quotes": [
             "error",
