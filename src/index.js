@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
 
 // Creates the Express app
 const app = express();
+
+// Sets up logging
 const logger = require('./logger').child({ name: 'Index' });
 const expressPino = require('express-pino-logger')({
 	logger: logger,
@@ -39,6 +41,7 @@ app.get('/', (req, res) => {
 });
 
 // Server is only started if it is not in a test environment
+// Otherwise it is exported to be tested
 if (environment === 'test') {
 	module.exports = app;
 } else {
