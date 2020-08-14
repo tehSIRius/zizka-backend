@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt');
 
 // Mocked database
-const Database = require('../../src/database');
+const database = require('../../src/database');
 jest.mock('../../src/database');
 
 // File to be tested
@@ -24,7 +24,7 @@ describe('Controllers/Database Controller', () => {
 				let resultUsername;
 				let resultPass;
 
-				Database.mockImplementation(() => {
+				database.mockImplementation(() => {
 					return {
 						select: () => {
 							return {
@@ -64,7 +64,7 @@ describe('Controllers/Database Controller', () => {
 		});
 
 		test('[Unit] Works with No Duplicates', async () => {
-			Database.mockImplementation(() => {
+			database.mockImplementation(() => {
 				return {
 					select: () => {
 						return {
@@ -82,7 +82,7 @@ describe('Controllers/Database Controller', () => {
 		});
 
 		test('[Unit] Works with a Duplicate', async () => {
-			Database.mockImplementation(() => {
+			database.mockImplementation(() => {
 				return {
 					select: () => {
 						return {
