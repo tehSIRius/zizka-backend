@@ -34,13 +34,17 @@ describe('Controllers/Database Controller', () => {
 						insert: (data) => {
 							resultUsername = data['username'];
 							resultPass = data['password'];
+
+							return {
+								returning: () => data['username'],
+							};
 						},
 					};
 				});
 
 				const controller = new DatabaseController();
 
-				await controller.addUser(username, password);
+				let result = await controller.addUser(username, password);
 
 				let expectedPass = await new Promise((resolve, reject) => {
 					bcrypt.compare(password, resultPass, (err, result) => {
@@ -54,49 +58,8 @@ describe('Controllers/Database Controller', () => {
 
 				expect(resultUsername).toEqual(username);
 				expect(expectedPass).toBeTruthy();
+				expect(result).toBeTruthy();
 			}
 		);
-	});
-
-	describe('isUsernameDuplicate', () => {
-		beforeEach(() => {
-			jest.resetModules();
-		});
-
-		test('[Unit] Works with No Duplicates', async () => {
-			database.mockImplementation(() => {
-				return {
-					select: () => {
-						return {
-							where: () => [],
-						};
-					},
-				};
-			});
-
-			const controller = new DatabaseController();
-
-			let result = await controller.isUsernameDuplicate('test');
-
-			expect(result).toBeFalsy();
-		});
-
-		test('[Unit] Works with a Duplicate', async () => {
-			database.mockImplementation(() => {
-				return {
-					select: () => {
-						return {
-							where: () => ['test'],
-						};
-					},
-				};
-			});
-
-			const controller = new DatabaseController();
-
-			let result = await controller.isUsernameDuplicate('test');
-
-			expect(result).toBeTruthy();
-		});
 	});
 });
