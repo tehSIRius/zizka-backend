@@ -1,6 +1,6 @@
 {
   "name": "zizka-backend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Backend for a fun trivia game with friends or foes",
   "main": "index.js",
   "scripts": {
