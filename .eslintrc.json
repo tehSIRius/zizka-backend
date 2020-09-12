@@ -1,51 +1,40 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2020": true,
-        "jest": true
-    },
-    "extends": [
-        "prettier",
-        "eslint:recommended"
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2020": true,
+    "jest": true
+  },
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "process": true
+  },
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "useTabs": true,
+        "semi": true,
+        "quoteProps": "consistent",
+        "arrowParens": "always",
+        "endOfLine": "lf"
+      }
     ],
-    "globals": {
-        "process": true
-    },
-    "plugins": [
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 11
-    },
-    "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "singleQuote": true,
-                "trailingComma": "es5",
-                "useTabs": true,
-                "semi": true,
-                "quoteProps": "consistent",
-                "arrowParens": "always",
-                "endOfLine": "lf"
-            }
-        ],
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
+    "indent": ["error", "tab"],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+  }
 }
