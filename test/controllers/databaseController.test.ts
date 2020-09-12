@@ -6,8 +6,6 @@ import db from '../../src/database';
 const tracker = mockDb.getTracker();
 
 import DatabaseController from '../../src/controllers/databaseController';
-import { query } from 'express';
-import logger from '../../src/logger';
 
 describe('Controllers: Database Controller', () => {
 	beforeAll(() => {
