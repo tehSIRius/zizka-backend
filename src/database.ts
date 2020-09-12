@@ -1,6 +1,6 @@
 import Knex from 'knex';
 
-import { Logger } from './logger';
+import Logger from './logger';
 
 const logger = Logger.child({ name: 'Database' });
 let database: Knex;
@@ -196,4 +196,4 @@ if (process.env.NODE_ENV !== 'test') {
 	});
 }
 
-export { database as Database };
+export default database;

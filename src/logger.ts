@@ -1,6 +1,6 @@
 import Pino from 'pino';
 
-export const Logger = Pino({
+export default Pino({
 	name: 'Zizka Backend',
 	level: process.env.LEVEL || 'info',
 	prettyPrint: {

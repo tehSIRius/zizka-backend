@@ -5,7 +5,7 @@ import Helmet from 'helmet';
 import BodyParser from 'body-parser';
 import ExpressPinoLogger from 'express-pino-logger';
 
-import { Logger } from './logger';
+import Logger from './logger';
 
 const port = process.env.PORT || 3000;
 const environment = process.env.NODE_ENV;
@@ -33,10 +33,6 @@ app.get('/', (req, res) => {
 	});
 });
 
-if (environment === 'test') {
-	module.exports = app;
-} else {
-	app.listen(port, () =>
-		logger.info(`Zizka Backend is running on http://localhost:${port}`)
-	);
-}
+app.listen(port, () =>
+	logger.info(`Zizka Backend is running on http://localhost:${port}`)
+);
