@@ -1,12 +1,10 @@
-'use strict';
+import Pino from 'pino';
 
-const logger = require('pino')({
-	name: 'Žižka Backend',
+export default Pino({
+	name: 'Zizka Backend',
 	level: process.env.LEVEL || 'info',
 	prettyPrint: {
 		colorize: true,
 		translateTime: true,
 	},
 });
-
-module.exports = logger;
