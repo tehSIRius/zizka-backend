@@ -60,7 +60,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
     "helmet": "^4.2.0",
-    "knex": "^0.21.14",
+    "knex": "^0.21.15",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "ts-node": "^9.1.1",
