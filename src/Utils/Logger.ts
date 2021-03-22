@@ -1,8 +1,8 @@
-import Pino from 'pino';
+import pino from 'pino';
 
-export default Pino({
+export default pino({
 	name: 'Zizka Backend',
-	level: process.env.LEVEL || 'info',
+	level: process.env.LOG_LEVEL ?? 'info',
 	prettyPrint: {
 		colorize: true,
 		translateTime: true,

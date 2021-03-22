@@ -1,38 +1,46 @@
-import Express from 'express';
-import Compression from 'compression';
-import Cors from 'cors';
-import Helmet from 'helmet';
-import BodyParser from 'body-parser';
-import ExpressPinoLogger from 'express-pino-logger';
+import express from 'express';
+import { ConnectionOptions, createConnection } from 'typeorm';
+import path from 'path';
 
-import Logger from './logger';
+import {
+	Game,
+	GameRound,
+	Question,
+	QuestionWrong,
+	Tip,
+	User,
+} from './Entities';
+import Logger from './Utils/Logger';
+import { TypeORMLogger } from './Utils/TypeORMLogger';
 
-const port = process.env.PORT || 3000;
-const environment = process.env.NODE_ENV;
+const PORT = process.env.PORT ?? 3000;
 
 const logger = Logger.child({ name: 'Index' });
-const expressPino = ExpressPinoLogger({
-	logger: logger,
-	useLevel: 'debug',
-});
+const options: ConnectionOptions = {
+	type: 'sqlite',
+	database: path.join(__dirname, 'database.sqlite'),
+	entities: [Game, GameRound, Question, QuestionWrong, Tip, User],
+	logger: new TypeORMLogger(),
+	logging: true,
+	synchronize: true,
+};
 
-const app = Express();
+async function main() {
+	const connection = await createConnection(options);
+	const userRepository = connection.getRepository(User);
 
-// Sets up middleware
-app.use(Cors());
-app.use(Helmet());
-app.use(Compression());
-app.use(BodyParser.urlencoded({ extended: true }));
-app.use(BodyParser.json());
-app.use(expressPino);
+	const app = express();
+	app.use(express.json());
 
-// Placeholder index response
-app.get('/', (req, res) => {
-	res.json({
-		value: 'Hello There!',
+	app.get('/users', async (_req, res) => {
+		const users = await userRepository.find();
+
+		res.json(users);
 	});
-});
 
-app.listen(port, () =>
-	logger.info(`Zizka Backend is running on http://localhost:${port}`)
-);
+	app.listen(PORT, () =>
+		logger.info(`Server is listening on http://localhost:${PORT}`)
+	);
+}
+
+main().catch((err) => logger.error(err));
