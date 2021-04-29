@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "10:00"
+    timezone: Europe/Prague
+  open-pull-requests-limit: 10
+  target-branch: devel
+  ignore:
+  - dependency-name: pino-pretty
+    versions:
+    - 4.5.0
+    - 4.7.1
