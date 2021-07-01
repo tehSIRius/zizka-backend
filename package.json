@@ -46,7 +46,7 @@
     "nodemon": "^2.0.9",
     "pg": "^8.6.0",
     "pino": "^6.11.3",
-    "pino-pretty": "^5.0.1",
+    "pino-pretty": "^5.1.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.0.0",
     "typeorm": "^0.2.34"
