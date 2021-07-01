@@ -49,6 +49,6 @@
     "pino-pretty": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.0.0",
-    "typeorm": "^0.2.32"
+    "typeorm": "^0.2.34"
   }
 }
